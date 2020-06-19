@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+		$(function()
+		 {
+			changes("四级");
+		})
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div class=" sidebar" role="navigation">
+            <div class="navbar-collapse">
+				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="index.html"><i class="fa fa-home nav_icon"></i>首页</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>热词预测  <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li>
+									<a href="gpch.html?typeid=1&kind=四级单词预测">四级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=2&kind=六级单词预测">六级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=4&kind=高考单词预测">高考词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=5&kind=托福单词预测">托福词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=6&kind=雅思单词预测">雅思词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=3&kind=考研单词预测">考研词汇</a>
+								</li>
+								
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>词云生成器 <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse" id="gpch">
+								
+							考试类型：<select style="width: 100px" onChange="changes(this.value)" id="thetype">
+								<option value="四级">四级</option>
+								<option value="六级">六级</option>
+								<option value="考研">考研</option>
+								<option value="高考">高考</option>
+								<option value="托福">托福</option>
+								<option value="雅思">雅思</option>
+								</select>
+							<br>考试时间：<select style="width: 100px" id="time">
+								 </select>	
+								<button onClick="tz()">生成</button>
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					</ul>
+					<div class="clearfix"> </div>
+					<!-- //sidebar-collapse -->
+				</nav>
+			</div>
+		</div>
+		<script>
+			function tz(){
+				var a1=$("#thetype").val();
+				var a2=$("#time").val();
+				window.location.href='ciyun.html?type='+a1+'&year='+a2;
+			}
+			function changes(val){
+	   $.ajax({
+                  url: "http://120.26.184.150/english/getType",
+                  type: "GET",
+				  async:false,
+                  dataType: "JSON",
+				  headers:{
+					  "Content-Type":"application/json"
+				  },
+                  success: function(data){
+					  $("#time").empty();
+					  data=data.typeArray;
+				//	  console.log(data[0][1][0].yearType);
+					  for(var i=0;i<=5;i++)
+						  {
+							  if(data[i][0]==val)
+								  {
+									  for(var j=0;j<data[i][1].length;j++)
+										  {
+							var f="<option value="+data[i][1][j].yearType+">"+data[i][1][j].yearType+"</option>";
+											  $("#time").append(f);
+										  }
+									 
+								  }
+						  }
+				    
+				  }
+			 });
+			}
+
+		</script>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+		<div class="sticky-header header-section ">
+			<div class="header-left">
+				<!--toggle button start-->
+				<button id="showLeftPush"><i class="fa fa-bars"></i></button>
+				<!--toggle button end-->
+				<!--logo -->
+				<div class="logo">
+					<a href="index.html">
+						<h1>wordworld</h1>
+						<span></span>
+					</a>
+				</div>
+				<!--//logo-->
+				<!--search-box-->
+				<div class="search-box">
+					
+						<input type="text" name="word" id="word" onkeydown="entersearch1(event)"  onblur="if(this.value==''){this.value='请搜索...'}" onfocus="if(this.value=='请搜索...'){this.value=''}" value="请搜索..."  ></input>
+
+						
+				</div><!--//end-search-box-->
+				<div class="clearfix"> </div>
+			</div>
+			<div class="header-right">
+				<div class="profile_details_left"><!--notifications of menu start -->
+					<ul class="nofitications-dropdown">
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new messages</h3>
+									</div>
+								</li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li class="odd"><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								  <div class="clearfix"></div>	
+								</a></li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all messages</a>
+									</div> 
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new notification</h3>
+									</div>
+								</li>
+								<li><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								  <div class="clearfix"></div>	
+								 </a></li>
+								 <li class="odd"><a href="#">
+									<div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li><a href="#">
+									<div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+									</div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li>
+									<div class="notification_bottom">
+										<a href="#">See all notifications</a>
+									</div> 
+								</li>
+							</ul>
+						</li>	
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 8 pending task</h3>
+									</div>
+								</li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Database update</span><span class="percentage">40%</span>
+										<div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										<div class="bar yellow" style="width:40%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar green" style="width:90%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
+										<div class="clearfix"></div>	
+									</div>
+								   <div class="progress progress-striped active">
+										 <div class="bar red" style="width: 33%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar  blue" style="width: 80%;"></div>
+									</div>
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all pending tasks</a>
+									</div> 
+								</li>
+							</ul>
+						</li>	
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+				<!--notification menu end -->
+				
+				<div class="clearfix"> </div>	
+				
+			</div>
+			<div style="margin-right: 30px;border: none;margin-top: 20px">		
+					<font size="15" color=#8370EA ><em>Try to make English exam a  easy thing</em></font>
+			</div>
+			<div class="clearfix"> </div>	
+		</div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page" style="margin-bottom: 0px;">
+				<div class="row-one">
+					<div class="col-md-4 widget">
+						<div class="stats-left ">
+						  <h5>大纲</h5>
+						  <h4>四级词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=1&name=四级词汇大纲">go</a></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+					<div class="col-md-4 widget states-mdl">
+						<div class="stats-left ">
+							<h5>大纲</h5>
+							<h4>六级词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=2&name=六级词汇大纲">go</a></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+					<div class="col-md-4 widget states-last">
+						<div class="stats-left ">
+							<h5>大纲</h5>
+							<h4>高考词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=4&name=高考词汇大纲">go</a></label>
+						</div>
+						
+					  <div class="clearfix"> </div>	
+					</div>
+					<div class="clearfix"> </div>	
+				</div>
+				<div class="charts">
+<div class="clearfix"> </div>
+						
+				</div>
+			  <div class="row"> </div>
+<div class="clearfix"> </div>
+			</div>
+			
+			<div class="main-page">
+				<div class="row-one">
+					<div class="col-md-4 widget">
+						<div class="stats-left ">
+						  <h5>大纲</h5>
+						  <h4>托福词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=5&name=托福词汇大纲">go</a></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+					<div class="col-md-4 widget states-mdl">
+						<div class="stats-left ">
+							<h5>大纲</h5>
+							<h4>雅思词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=6&name=雅思词汇大纲">go</a></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+					
+					<div class="col-md-4 widget states-last">
+						<div class="stats-left ">
+							<h5>大纲</h5>
+							<h4>考研词汇</h4>
+						</div>
+						<div class="stats-right">
+							<label> <a href="displayword.html?typeid=3&name=考研词汇大纲">go</a></label>
+						</div>
+                <div class="clearfix"> </div>	
+				  </div>
+					<div class="clearfix"> </div>	
+				</div>
+				<div class="charts">
+<div class="clearfix"> </div>
+						
+				</div>
+			  
+		</div>
+	<!-- Classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+			
+		
+		</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+			
+   <script src="js/bootstrap.js"> </script>
+	
+			<script>
+				function jump(){
+			 console.log("我进来了jump");	
+		 var searchval = $("#word").val();
+		window.location.href='displaywordcount.html?word='+searchval;
+	 }
+			
+	 function entersearch1(event){  
+		 console.log("我进来了");
+		    if (event.keyCode == 13)  
+		        jump();  
+	 }
+			</script>
+</body>
+</html>

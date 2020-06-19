@@ -1,0 +1,10 @@
+server:
+  port: 5880
+spring:
+  application:
+    name: dianshang
+  datasource:
+    url: jdbc:mysql://rm-bp132k4d3i28zu7928o.mysql.rds.aliyuncs.com:3306/english?serverTimezone=UTC
+    username: epie
+    password: Epie@cloud
+    driver-class-name: com.mysql.cj.jdbc.Driver

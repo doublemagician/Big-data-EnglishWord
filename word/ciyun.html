@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>词云</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery-3.3.1.js"></script>
+
+<script type="text/javascript" src="js/echarts-all.js" ></script>
+<script type="text/javascript" src="js/tagcloud.js" ></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+   <script src="js/bootstrap.js"> </script>
+
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script>
+	$(function()
+		 {
+			changes("四级");
+		})
+		function getParameter(param) {
+                 
+			var query = decodeURIComponent(window.location.search); //获取URL地址中？后的所有字符  
+                 var iLen = param.length; //获取你的参数名称长度  
+                 var iStart = query.indexOf(param); //获取你该参数名称的其实索引  
+                 if(iStart == -1) //-1为没有该参数  
+                     return "";
+                 iStart += iLen + 1;
+                 var iEnd = query.indexOf("&", iStart); //获取第二个参数的其实索引  
+                if(iEnd == -1) //只有一个参数  
+                    return query.substring(iStart); //获取单个参数的参数值  
+                 return query.substring(iStart, iEnd); //获取第二个参数的值               
+			  }
+            function gettypeid() {
+                 var param = getParameter("typeid");  //这个值是传来的typeid的值用来判断是哪一类考试
+                 return param;
+             }
+	
+	$(function(){
+		 
+	       var param=getParameter("type");
+		   var param1=getParameter("year");
+		console.log(param+param1);
+		$("#ttname").append(param+"_"+param1);
+		 $.ajax({
+                  url: "http://120.26.184.150/english/getWordCloud?limit=200&type=%E5%9B%9B%E7%BA%A7&year=1712",
+                  type: "GET",
+				  async:false,
+                  dataType: "JSON",
+				  headers:{
+					  "Content-Type":"application/json"
+				  },
+                  success: function(data){
+				  data=data.data;	  
+					  console.log(data);
+			for(var i=0;i<=60;i++)
+	    {
+		
+		$("#ciyunsimida").append('<a href="'+'displaywordcount.html?word='+data[i]["name"]+'">'+data[i]["name"]+'</a>');
+	    }
+				  }
+		 });
+			
+})
+ 
+</script>
+
+<script type="text/javascript">
+$(function() {
+	/*3D标签云*/
+	tagcloud({
+		selector: ".tagcloud",  //元素选择器
+		fontsize: 18,       //基本字体大小, 单位px
+		radius: 180,         //滚动半径, 单位px
+		mspeed: "normal",   //滚动最大速度, 取值: slow, normal(默认), fast
+		ispeed: "normal",   //滚动初速度, 取值: slow, normal(默认), fast
+		direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+		keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+	});
+});
+</script>	
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div class=" sidebar" role="navigation">
+            <div class="navbar-collapse">
+				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="index.html"><i class="fa fa-home nav_icon"></i>首页</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>热词预测  <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li>
+									<a href="gpch.html?typeid=1&kind=四级单词预测">四级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=2&kind=六级单词预测">六级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=4&kind=高考单词预测">高考词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=5&kind=托福单词预测">托福词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=6&kind=雅思单词预测">雅思词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=3&kind=考研单词预测">考研词汇</a>
+								</li>
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>词云生成器  <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse" id="gpch">
+								
+							考试类型：<select style="width: 100px" onChange="changes(this.value)" id="thetype">
+								<option value="四级">四级</option>
+								<option value="六级">六级</option>
+								<option value="考研">考研</option>
+								<option value="高考">高考</option>
+								<option value="托福">托福</option>
+								<option value="雅思">雅思</option>
+								</select>
+							<br>考试时间：<select style="width: 100px" id="time">
+								</select>	
+								<button onClick="tz()">生成</button>
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					</ul>
+					<div class="clearfix"> </div>
+					<!-- //sidebar-collapse -->
+				</nav>
+			</div>
+		</div>
+		<script>
+			function tz(){
+				var a1=$("#thetype").val();
+				var a2=$("#time").val();
+				window.location.href='ciyun.html?type='+a1+'&year='+a2;
+			}
+			function changes(val){
+	   $.ajax({
+                  url: "http://120.26.184.150/english/getType",
+                  type: "GET",
+				  async:false,
+                  dataType: "JSON",
+				  headers:{
+					  "Content-Type":"application/json"
+				  },
+                  success: function(data){
+					  $("#time").empty();
+					  data=data.typeArray;
+				//	  console.log(data[0][1][0].yearType);
+					  for(var i=0;i<=5;i++)
+						  {
+							  if(data[i][0]==val)
+								  {
+									  for(var j=0;j<data[i][1].length;j++)
+										  {
+							var f="<option value="+data[i][1][j].yearType+">"+data[i][1][j].yearType+"</option>";
+											  $("#time").append(f);
+										  }
+									 
+								  }
+						  }
+				    
+				  }
+			 });
+			}
+
+		</script>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+<div class="sticky-header header-section ">
+			<div class="header-left">
+				<!--toggle button start-->
+				<button id="showLeftPush"><i class="fa fa-bars"></i></button>
+				<!--toggle button end-->
+				<!--logo -->
+				<div class="logo">
+					<a href="index.html">
+						<h1>wordworld</h1>
+						<span></span>
+					</a>
+				</div>
+				<!--//logo-->
+				<!--search-box-->
+				<div class="search-box">
+					<input type="text" name="word" id="word" onkeydown="entersearch1(event)"  onblur="if(this.value==''){this.value='请搜索...'}" onfocus="if(this.value=='请搜索...'){this.value=''}" value="请搜索..."  />
+				</div><!--//end-search-box-->
+				<div class="clearfix"> </div>
+			</div>
+			<div class="header-right">
+				<div class="profile_details_left"><!--notifications of menu start -->
+					<ul class="nofitications-dropdown">
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new messages</h3>
+									</div>
+			</li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li class="odd"><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								  <div class="clearfix"></div>	
+								</a></li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all messages</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new notification</h3>
+									</div>
+			</li>
+								<li><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								  <div class="clearfix"></div>	
+								 </a></li>
+								 <li class="odd"><a href="#">
+									<div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								 </div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li><a href="#">
+									<div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								 </div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li>
+									<div class="notification_bottom">
+										<a href="#">See all notifications</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>	
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 8 pending task</h3>
+									</div>
+			</li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Database update</span><span class="percentage">40%</span>
+										<div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										<div class="bar yellow" style="width:40%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar green" style="width:90%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
+										<div class="clearfix"></div>	
+									</div>
+								   <div class="progress progress-striped active">
+										 <div class="bar red" style="width: 33%;"></div>
+								</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar  blue" style="width: 80%;"></div>
+									</div>
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all pending tasks</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>	
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+				<!--notification menu end -->
+				
+				<div class="clearfix"> </div>	
+				
+			</div>
+			<div style="margin-right: 30px;border: none;margin-top: 20px">		
+					<font size="15" color=#8370EA ><em>Try to make English exam a  easy thing</em></font>
+			</div>
+			<div class="clearfix"> </div>	
+		</div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		
+		<div id="page-wrapper">
+			 <p align="center" style="font-size: 20px;" id="ttname"></p>
+			<div class="tagcloud" id="ciyunsimida">
+						<a id="first"></a>
+		                
+            </div>			
+</div>
+		
+	<!-- Classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+   <script src="js/bootstrap.js"> </script>		
+			<script>
+				function jump(){
+			 console.log("我进来了jump");	
+		 var searchval = $("#word").val();
+		window.location.href='displaywordcount.html?word='+searchval;
+	 }
+			
+	 function entersearch1(event){  
+		 console.log("我进来了");
+		    if (event.keyCode == 13)  
+		        jump();  
+	 }
+			</script>
+</body>
+</html>

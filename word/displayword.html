@@ -1,0 +1,655 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>词汇大纲表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+	<style type="text/css">
+  
+   	 a{
+		text-decoration: none;
+	}
+	
+	.table2{
+		border:#C8C8C8 solid;   
+		border-width:1px 0px 0px 1px; 
+		background: #F3F0F0;
+		margin-top:25px;
+	}
+	
+	.td0{
+    	border:#C8C8C8 solid;  
+		border-width:0 0 1px 0;
+	}
+	
+	.td2{
+    	border:#C8C8C8 solid;   
+		border-width:0 1px 1px 0 ;
+		text-align: center;
+	}
+	
+	.barcon {
+		width: 1000px;
+		margin: 0 auto;
+		text-align: center;
+     }
+ 
+	.barcon1 {
+	    font-size: 17px;
+	    float: left;
+	    margin-top: 20px;
+	}
+ 
+	.barcon2 {
+		float: right;
+	}
+ 
+	.barcon2 ul {
+    	margin: 20px 0;
+    	padding-left: 0;
+    	list-style: none;
+    	text-align: center;
+	}
+ 
+	.barcon2 li {
+    	display: inline;
+	}
+ 
+	.barcon2 a {
+		font-size: 16px;
+		font-weight: normal;
+		display: inline-block;
+		padding: 5px;
+		padding-top: 0;
+		color: black;
+		border: 1px solid #ddd;
+		background-color: #fff;
+	}
+ 
+	.barcon2 a:hover{
+		background-color: #eee;
+	}
+ 
+	.ban {
+    	opacity: .4;
+	}
+ </style>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+		$(function()
+		 {
+			changes("四级");
+		})
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div class=" sidebar" role="navigation">
+            <div class="navbar-collapse">
+				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="index.html"><i class="fa fa-home nav_icon"></i>首页</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>热词预测  <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li>
+									<a href="gpch.html?typeid=1&kind=四级单词预测">四级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=2&kind=六级单词预测">六级词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=4&kind=高考单词预测">高考词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=5&kind=托福单词预测">托福词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=6&kind=雅思单词预测">雅思词汇</a>
+								</li>
+								<li>
+									<a href="gpch.html?typeid=3&kind=考研单词预测">考研词汇</a>
+								</li>
+								
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					<li>
+							<a href="#"><i class="fa fa-cogs nav_icon"></i>词云生成器  <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse" id="gpch">
+								
+							考试类型：<select style="width: 100px" onChange="changes(this.value)" id="thetype">
+								<option value="四级">四级</option>
+								<option value="六级">六级</option>
+								<option value="考研">考研</option>
+								<option value="高考">高考</option>
+								<option value="托福">托福</option>
+								<option value="雅思">雅思</option>
+								</select>
+							<br>考试时间：<select style="width: 100px" id="time">
+								</select>	
+								<button onClick="tz()">生成</button>
+							</ul>
+							<!-- /nav-second-level -->
+						
+						</li>
+					</ul>
+					<div class="clearfix"> </div>
+					<!-- //sidebar-collapse -->
+				</nav>
+			</div>
+		</div>
+		<script>
+			function tz(){
+				var a1=$("#thetype").val();
+				var a2=$("#time").val();
+				window.location.href='ciyun.html?type='+a1+'&year='+a2;
+			}
+			function changes(val){
+	   $.ajax({
+                  url: "http://120.26.184.150/english/getType",
+                  type: "GET",
+				  async:false,
+                  dataType: "JSON",
+				  headers:{
+					  "Content-Type":"application/json"
+				  },
+                  success: function(data){
+					  $("#time").empty();
+					  data=data.typeArray;
+				//	  console.log(data[0][1][0].yearType);
+					  for(var i=0;i<=5;i++)
+						  {
+							  if(data[i][0]==val)
+								  {
+									  for(var j=0;j<data[i][1].length;j++)
+										  {
+							var f="<option value="+data[i][1][j].yearType+">"+data[i][1][j].yearType+"</option>";
+											  $("#time").append(f);
+										  }
+									 
+								  }
+						  }
+				    
+				  }
+			 });
+			}
+
+		</script>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+<div class="sticky-header header-section ">
+			<div class="header-left">
+				<!--toggle button start-->
+				<button id="showLeftPush"><i class="fa fa-bars"></i></button>
+				<!--toggle button end-->
+				<!--logo -->
+				<div class="logo" id="logo">
+					<a href="index.html">
+						<h1>wordworld</h1>
+						<span></span>
+					</a>
+				</div>
+				<!--//logo-->
+				<!--search-box-->
+				<div class="search-box">
+					<input type="text" name="word" id="word" onkeydown="entersearch1(event)"  onblur="if(this.value==''){this.value='请搜索...'}" onfocus="if(this.value=='请搜索...'){this.value=''}" value="请搜索..."  ></input>
+				</div><!--//end-search-box-->
+				<div class="clearfix"> </div>
+			</div>
+			<div class="header-right">
+				<div class="profile_details_left"><!--notifications of menu start -->
+					<ul class="nofitications-dropdown">
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new messages</h3>
+									</div>
+			</li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li class="odd"><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								  <div class="clearfix"></div>	
+								</a></li>
+								<li><a href="#">
+								   <div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								   <div class="clearfix"></div>	
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all messages</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 3 new notification</h3>
+									</div>
+			</li>
+								<li><a href="#">
+									<div class="user_img"><img src="images/2.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet</p>
+									<p><span>1 hour ago</span></p>
+								</div>
+								  <div class="clearfix"></div>	
+								 </a></li>
+								 <li class="odd"><a href="#">
+									<div class="user_img"><img src="images/1.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								 </div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li><a href="#">
+									<div class="user_img"><img src="images/3.png" alt=""></div>
+								   <div class="notification_desc">
+									<p>Lorem ipsum dolor amet </p>
+									<p><span>1 hour ago</span></p>
+								 </div>
+								   <div class="clearfix"></div>	
+								 </a></li>
+								 <li>
+									<div class="notification_bottom">
+										<a href="#">See all notifications</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>	
+						<li class="dropdown head-dpdn">
+<ul class="dropdown-menu">
+				<li>
+									<div class="notification_header">
+										<h3>You have 8 pending task</h3>
+									</div>
+			</li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Database update</span><span class="percentage">40%</span>
+										<div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										<div class="bar yellow" style="width:40%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar green" style="width:90%;"></div>
+									</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
+										<div class="clearfix"></div>	
+									</div>
+								   <div class="progress progress-striped active">
+										 <div class="bar red" style="width: 33%;"></div>
+								</div>
+								</a></li>
+								<li><a href="#">
+									<div class="task-info">
+										<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
+									   <div class="clearfix"></div>	
+									</div>
+									<div class="progress progress-striped active">
+										 <div class="bar  blue" style="width: 80%;"></div>
+									</div>
+								</a></li>
+								<li>
+									<div class="notification_bottom">
+										<a href="#">See all pending tasks</a>
+									</div> 
+								</li>
+						  </ul>
+						</li>	
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+				<!--notification menu end -->
+				
+				<div class="clearfix"> </div>	
+				
+			</div>
+			<div style="margin-right: 30px;border: none;margin-top: 20px">		
+					<font size="15" color=#8370EA ><em>Try to make English exam a  easy thing</em></font>
+			</div>
+			<div class="clearfix"> </div>	
+		</div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			  <p align="center" style="font-size: 20px;" id="tname"></p>
+			
+					 <table width="950" cellpadding="0" cellspacing="0" class="table2" align="center">
+	<thead>
+	
+	<tr align="center">
+		<th width="150" height="33" class="td2" >序号</th>
+		<th width="300" class="td2" >单词</th>
+		<th width="250" class="td2" >出现频率</th>
+	</tr>
+	</thead>
+	<tbody id="adminTbody">
+	</tbody>
+</table>
+<div id="barcon" class="barcon" >
+	<div id="barcon1" class="barcon1"></div>
+		<div id="barcon2" class="barcon2">
+			<ul>
+				<li><a href="###" id="firstPage">首页</a></li>
+				<li><a href="###" id="prePage">上一页</a></li>
+				<li><a href="###" id="nextPage">下一页</a></li>
+				<li><a href="###" id="lastPage">尾页</a></li>
+				<li><select id="jumpWhere">
+				</select></li>
+				<li><input type="button" onclick="jumppage()" value="跳转"></li>
+			</ul>
+		</div>
+						
+			  </div>
+			  
+</div>
+	<!-- Classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+   <script src="js/bootstrap.js"> </script>
+		
+<script>
+/*动态生成用户函数
+ num为生成的用户数量
+*/
+function getParameter(param) {
+                  var query = decodeURIComponent(window.location.search); //获取URL地址中？后的所有字符  
+                 var iLen = param.length; //获取你的参数名称长度  
+                 var iStart = query.indexOf(param); //获取你该参数名称的其实索引  
+                 if(iStart == -1) //-1为没有该参数  
+                     return "";
+                 iStart += iLen + 1;
+                 var iEnd = query.indexOf("&", iStart); //获取第二个参数的其实索引  
+                if(iEnd == -1) //只有一个参数  
+                    return query.substring(iStart); //获取单个参数的参数值  
+                 return query.substring(iStart, iEnd); //获取第二个参数的值               
+			  }
+            function addword() {
+        var param = getParameter("typeid");  //这个值是从主页传来的typeid的值用来判断是哪一类考试的大纲
+              $.ajax({
+                  url: "http://120.26.184.150/english/getOutLineVocabulary?type="+param,
+                  type: "GET",
+				  async:false,
+                  dataType: "JSON",
+				  headers:{
+					  "Content-Type":"application/json"
+				  },
+                  success: function(data){
+				  console.log(data);
+					  data=data.data;
+                     for(var i=0;i<data.length;i++)
+	{
+			var trNode=document.createElement("tr");
+			$(trNode).attr("align","center");
+			//序号
+			var tdNodeNum=document.createElement("td");
+			$(tdNodeNum).html(i+1);
+			tdNodeNum.style.width = "150px";
+			tdNodeNum.style.height = "33px";
+			tdNodeNum.className = "td2";
+			
+			var tdNodeName=document.createElement("td");
+			$(tdNodeName).html(data[i]["word"]);
+			tdNodeName.style.width = "300px";
+			tdNodeName.className = "td2";
+			
+			var tdNodeOper = document.createElement("td");
+			tdNodeOper.style.width = "170px";
+			tdNodeOper.className = "td2";
+			var editA = document.createElement("a");
+			$(editA).attr("href", 'displaywordcount.html?word='+data[i]["word"]).text("查看");
+			$(editA).css({ display: "inline-block" });
+			tdNodeOper.appendChild(editA);
+ 
+			trNode.appendChild(tdNodeNum);
+			trNode.appendChild(tdNodeName);
+			trNode.appendChild(tdNodeOper);
+			$("#adminTbody")[0].appendChild(trNode);
+	} 
+                  }
+             });
+				
+				
+             }
+	
+/*
+function dynamicAddUser(num){
+	for(var i=0;i<=num;i++)
+	{
+			var trNode=document.createElement("tr");
+			$(trNode).attr("align","center");
+			//序号
+			var tdNodeNum=document.createElement("td");
+			$(tdNodeNum).html(i+1);
+			tdNodeNum.style.width = "150px";
+			tdNodeNum.style.height = "33px";
+			tdNodeNum.className = "td2";
+			//用户名
+			var tdNodeName=document.createElement("td");
+			$(tdNodeName).html("lzj"+i);
+			tdNodeName.style.width = "300px";
+			tdNodeName.className = "td2";
+			//操作
+			var tdNodeOper = document.createElement("td");
+			tdNodeOper.style.width = "170px";
+			tdNodeOper.className = "td2";
+			var editA = document.createElement("a");
+			$(editA).attr("href", 'displaywordcount.html?word=lzj'+i).text("查看");
+			$(editA).css({ display: "inline-block" });
+			tdNodeOper.appendChild(editA);
+ 
+			trNode.appendChild(tdNodeNum);
+			trNode.appendChild(tdNodeName);
+			trNode.appendChild(tdNodeOper);
+			$("#adminTbody")[0].appendChild(trNode);
+	}
+}
+*/
+$(function(){
+	var tname=getParameter("name");
+	console.log(tname);
+	$("#tname").append(tname);
+	addword();
+	//dynamicAddUser(80);
+	goPage(1,20);
+	var tempOption="";
+	for(var i=1;i<=totalPage;i++)
+	{
+		tempOption+='<option value='+i+'>'+i+'</option>'
+	}
+	$("#jumpWhere").html(tempOption);
+})
+ 
+/**
+ * 分页函数
+ * pno--页数
+ * psize--每页显示记录数
+ * 分页部分是从真实数据行开始，因而存在加减某个常数，以确定真正的记录数
+ * 纯js分页实质是数据行全部加载，通过是否显示属性完成分页功能
+**/
+ 
+var pageSize=0;//每页显示行数
+var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
+var totalPage;//总页数
+function goPage(pno,psize){
+    var itable = document.getElementById("adminTbody");
+    var num = itable.rows.length;//表格所有行数(所有记录数)
+ 
+     pageSize = psize;//每页显示行数
+    //总共分几页 
+    if(num/pageSize > parseInt(num/pageSize)){   
+            totalPage=parseInt(num/pageSize)+1;   
+       }else{   
+           totalPage=parseInt(num/pageSize);   
+       }   
+    var currentPage = pno;//当前页数
+	 currentPage_=currentPage;
+    var startRow = (currentPage - 1) * pageSize+1; 
+    var endRow = currentPage * pageSize;
+        endRow = (endRow > num)? num : endRow;    
+       //遍历显示数据实现分页
+    /*for(var i=1;i<(num+1);i++){    
+        var irow = itable.rows[i-1];
+        if(i>=startRow && i<=endRow){
+            irow.style.display = "";    
+        }else{
+            irow.style.display = "none";
+        }
+    }*/
+ 
+	$("#adminTbody tr").hide();
+	for(var i=startRow-1;i<endRow;i++)
+	{
+		$("#adminTbody tr").eq(i).show();
+	}
+    var tempStr = "共"+num+"条记录 分"+totalPage+"页 当前第"+currentPage+"页";
+	 document.getElementById("barcon1").innerHTML = tempStr;
+	 
+    if(currentPage>1){
+		$("#firstPage").on("click",function(){
+			goPage(1,psize);
+		}).removeClass("ban");
+		$("#prePage").on("click",function(){
+			goPage(currentPage-1,psize);
+		}).removeClass("ban");   
+    }else{
+		$("#firstPage").off("click").addClass("ban");
+		$("#prePage").off("click").addClass("ban");  
+    }
+ 
+    if(currentPage<totalPage){
+		$("#nextPage").on("click",function(){
+			goPage(currentPage+1,psize);
+		}).removeClass("ban")
+		$("#lastPage").on("click",function(){
+			goPage(totalPage,psize);
+		}).removeClass("ban")
+    }else{
+		$("#nextPage").off("click").addClass("ban");
+		$("#lastPage").off("click").addClass("ban");
+    }   
+	
+	$("#jumpWhere").val(currentPage_);
+}
+ 
+ 
+/*	function jumpPage()
+{
+	console.log("进来了");
+	var num=$("#jumpWhere").val();
+	if(num!=currentPage_)
+	{
+		goPage(num,20);
+	}
+	else
+		{
+			goPage(3,20);
+		}
+}*/
+ function jumppage(){
+	//console.log("进来了");
+	var num=$("#jumpWhere").val();
+	if(num!=currentPage_)
+	{
+		goPage(num,20);
+	}
+	
+}
+
+</script>		
+			<script>
+				function jump(){
+			 console.log("我进来了jump");	
+		 var searchval = $("#word").val();
+		window.location.href='displaywordcount.html?word='+searchval;
+	 }
+			
+	 function entersearch1(event){  
+		 console.log("我进来了");
+		    if (event.keyCode == 13)  
+		        jump();  
+	 }
+			</script>
+</body>
+</html>
